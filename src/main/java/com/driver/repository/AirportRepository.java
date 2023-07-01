@@ -214,7 +214,7 @@ public class AirportRepository {
 
         int total_boooking = storeFlightToPassenger.get(flightId).size();
 
-        for(int pass = 1 ; pass <= total_boooking ; pass++){
+        for(int pass = 0 ; pass < total_boooking ; pass++){
             total_revenue += (intial_price + (pass) * 50);
         }
         return total_revenue;
