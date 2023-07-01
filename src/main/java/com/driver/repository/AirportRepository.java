@@ -62,7 +62,7 @@ public class AirportRepository {
                 duration = flight.getDuration();
             }
         }
-        return duration;
+        return duration == 0.0 ? -1.0 : duration;
     }
 
     public int getNumberOfPeopleOn(Date date, String airportName) {
