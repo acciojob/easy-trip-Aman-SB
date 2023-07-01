@@ -68,8 +68,6 @@ public class AirportRepository {
     public int getNumberOfPeopleOn(Date date, String airportName) {
         int total_no_of_people = 0;
 
-        if(!storeFlightoAirport.containsKey(airportName))return total_no_of_people;
-
         for(Flight flight : storeFlightoAirport.get(airportName)){
 
             Date date1 = flight.getFlightDate();
