@@ -7,14 +7,14 @@ import com.driver.model.Passenger;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 public class AirportRepository {
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     HashMap<String,Airport> storeAirport = new HashMap<>();
     //mapping of airport name to airport
@@ -73,7 +73,11 @@ public class AirportRepository {
         for(Flight flight : storeFlightoAirport.get(airportName)){
 
             Date date1 = flight.getFlightDate();
-            int comparison = date1.compareTo(date);
+            //converting date only format
+            LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate localDate2 = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            int comparison = localDate1.compareTo(localDate2);
             if(comparison == 0){
                 if(storeFlightToPassenger.containsKey(flight.getFlightId())){
                     int size_of_flight = storeFlightToPassenger.get(flight.getFlightId()).size();
