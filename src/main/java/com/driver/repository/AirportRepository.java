@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-@Repository
 public class AirportRepository {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
