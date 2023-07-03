@@ -64,6 +64,8 @@ public class AirportRepository {
     }
 
     public int getNumberOfPeopleOn(Date date, String airportName) {
+        // logic is wrong not implemented the flight comming to this airport at given time
+//        This includes both the people who have come for a flight and who have landed on an airport after their flight
         int total_no_of_people = 0;
 
         if(!storeFlightoAirport.containsKey(airportName))return total_no_of_people;
@@ -95,9 +97,17 @@ public class AirportRepository {
         storeFlight.put(flight.getFlightId(),flight);
         // now map the flight with the airport using city
         City city = flight.getFromCity();
+        City toCity = flight.getToCity();
         List<Flight> curr_flight = new ArrayList<>();
         for(Airport airport : storeAirport.values()){
             if(airport.getCity() == city){
+                if(storeFlightoAirport.containsKey(airport.getAirportName())){
+                    curr_flight = storeFlightoAirport.get(airport.getAirportName());
+                }
+                curr_flight.add(flight);
+                storeFlightoAirport.put(airport.getAirportName(),curr_flight);
+            }
+            if(airport.getCity() == toCity){
                 if(storeFlightoAirport.containsKey(airport.getAirportName())){
                     curr_flight = storeFlightoAirport.get(airport.getAirportName());
                 }

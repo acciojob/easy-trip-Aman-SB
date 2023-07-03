@@ -76,7 +76,6 @@ public class AirportController {
        return flight_fare;
     }
 
-
     @PostMapping("/book-a-ticket")
     public String bookATicket(@RequestParam("flightId")Integer flightId,@RequestParam("passengerId")Integer passengerId){
 
