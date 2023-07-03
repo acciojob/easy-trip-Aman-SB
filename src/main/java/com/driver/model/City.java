@@ -5,7 +5,7 @@ public enum City {
     KANPUR,
     DELHI,
     CHANDIGARH,
-    BANGLORE,
+    BANGALORE,
     JAIPUR,
     KOLKATA,
     CHENNAI,
