@@ -4,8 +4,6 @@ import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -74,11 +72,12 @@ public class AirportRepository {
 
             Date date1 = flight.getFlightDate();
             //converting date only format
-            LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate localDate2 = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            LocalDate localDate2 = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            int comparison = localDate1.compareTo(localDate2);
-            if(comparison == 0){
+//            int comparison = localDate1.compareTo(localDate2);
+            int comparison = date1.compareTo(date);
+            if(comparison >= 0){
                 if(storeFlightToPassenger.containsKey(flight.getFlightId())){
                     int size_of_flight = storeFlightToPassenger.get(flight.getFlightId()).size();
                     total_no_of_people += size_of_flight ;
