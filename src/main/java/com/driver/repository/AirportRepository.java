@@ -70,19 +70,13 @@ public class AirportRepository {
 
         if(!storeFlightoAirport.containsKey(airportName))return total_no_of_people;
 
+        Airport airport = storeAirport.get(airportName);
+
         for(Flight flight : storeFlightoAirport.get(airportName)){
-
-            Date date1 = flight.getFlightDate();
-            //converting date only format
-            LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate localDate2 = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            int comparison = localDate1.compareTo(localDate2);
-            if(comparison == 0){
-                if(storeFlightToPassenger.containsKey(flight.getFlightId())){
-                    int size_of_flight = storeFlightToPassenger.get(flight.getFlightId()).size();
-                    total_no_of_people += size_of_flight ;
-                }
+            if(flight.getFlightDate().equals(date) && flight.getFromCity().equals(airport.getCity()))
+            if(storeFlightToPassenger.containsKey(flight.getFlightId())){
+                int size_of_flight = storeFlightToPassenger.get(flight.getFlightId()).size();
+                total_no_of_people += size_of_flight ;
             }
         }
 
@@ -97,17 +91,9 @@ public class AirportRepository {
         storeFlight.put(flight.getFlightId(),flight);
         // now map the flight with the airport using city
         City city = flight.getFromCity();
-        City toCity = flight.getToCity();
         List<Flight> curr_flight = new ArrayList<>();
         for(Airport airport : storeAirport.values()){
             if(airport.getCity() == city){
-                if(storeFlightoAirport.containsKey(airport.getAirportName())){
-                    curr_flight = storeFlightoAirport.get(airport.getAirportName());
-                }
-                curr_flight.add(flight);
-                storeFlightoAirport.put(airport.getAirportName(),curr_flight);
-            }
-            if(airport.getCity() == toCity){
                 if(storeFlightoAirport.containsKey(airport.getAirportName())){
                     curr_flight = storeFlightoAirport.get(airport.getAirportName());
                 }
